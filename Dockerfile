@@ -1,19 +1,19 @@
-FROM ghcr.io/linuxserver/baseimage-kasmvnc:debianbullseye
+from ghcr.io/linuxserver/baseimage-kasmvnc:debianbullseye-8446af38-ls104 as base
 
 # set version label
-ARG BUILD_DATE
-ARG VERSION
-LABEL build_version="Metatrader Docker:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="gmartin"
+arg BUILD_DATE
+arg version
+label build_version="Metatrader Docker:- ${VERSION} Build-date:- ${BUILD_DATE}"
+label maintainer="gmartin"
 
-ENV TITLE=Metatrader5
-ENV WINEPREFIX="/config/.wine"
+env TITLE=Metatrader5
+env WINEPREFIX="/config/.wine"
 
 # Update package lists and upgrade packages
-RUN apt-get update && apt-get upgrade -y
+run apt-get update && apt-get upgrade -y
 
 # Install required packages
-RUN apt-get install -y \
+run apt-get install -y \
     python3-pip \
     wget \
     && pip3 install --upgrade pip
